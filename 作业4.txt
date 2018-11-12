@@ -1,0 +1,76 @@
+mysql> use homework;
+Database changed
+mysql> create table dianying(name varchar(30),daoyan varchar(30),year int(5),pingfen varchar(10));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> alter table dianying change pingfen pingfen float;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc dianying;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(30) | YES  |     | NULL    |       |
+| daoyan  | varchar(30) | YES  |     | NULL    |       |
+| year    | int(5)      | YES  |     | NULL    |       |
+| pingfen | float       | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+mysql> insert into dianying(name,daoyan,year,pingfen) values('wobushiyaoshen','wenmuye',2018,9.6);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into dianying(name,daoyan,year,pingfen) values('wukongzhuan','guozijian',2017,7.4);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into dianying(name,daoyan,year,pingfen) values('qianren3','tianyusheng',2017,7.7);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from dianying;
++----------------+-------------+------+---------+
+| name           | daoyan      | year | pingfen |
++----------------+-------------+------+---------+
+| wobushiyaoshen | wenmuye     | 2018 |     9.6 |
+| wukongzhuan    | guozijian   | 2017 |     7.4 |
+| qianren3       | tianyusheng | 2017 |     7.7 |
++----------------+-------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from dianying where name like '% wukongzhuan %';
+Empty set (0.00 sec)
+
+mysql> select * from dianying where name like '%wukongzhuan%';
++-------------+-----------+------+---------+
+| name        | daoyan    | year | pingfen |
++-------------+-----------+------+---------+
+| wukongzhuan | guozijian | 2017 |     7.4 |
++-------------+-----------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from dianying where name like '%qianren3%';
++----------+-------------+------+---------+
+| name     | daoyan      | year | pingfen |
++----------+-------------+------+---------+
+| qianren3 | tianyusheng | 2017 |     7.7 |
++----------+-------------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from dianying where name like '2018';
+Empty set (0.00 sec)
+
+mysql> select * from dianying where year like '2018';
++----------------+---------+------+---------+
+| name           | daoyan  | year | pingfen |
++----------------+---------+------+---------+
+| wobushiyaoshen | wenmuye | 2018 |     9.6 |
++----------------+---------+------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from dianying where pingfen like '7.7';
++----------+-------------+------+---------+
+| name     | daoyan      | year | pingfen |
++----------+-------------+------+---------+
+| qianren3 | tianyusheng | 2017 |     7.7 |
++----------+-------------+------+---------+
+1 row in set (0.00 sec)
+
+mysql>

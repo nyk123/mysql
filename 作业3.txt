@@ -1,0 +1,60 @@
+mysql> use homework;
+Database changed
+mysql>   create table shoucang(id varchar(20) primary key unique,sc_name varchar(45),sc_jiage int,sc_time datetime,quxiao_sc enum('0','1'));
+Query OK, 0 rows affected (0.72 sec)
+mysql>  alter table shoucang change quxiao_sc quxiao_sc bit default 1;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc shoucang;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | varchar(20) | NO   | PRI | NULL    |       |
+| sc_name   | varchar(45) | YES  |     | NULL    |       |
+| sc_jiage  | int(11)     | YES  |     | NULL    |       |
+| sc_time   | datetime    | YES  |     | NULL    |       |
+| quxiao_sc | bit(1)      | YES  |     | b'1'    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql>  insert into shoucang(id,sc_name,sc_jiage,sc_time) values('1','adidas',300.00,now());
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from shoucang;
++----+---------+----------+---------------------+-----------+
+| id | sc_name | sc_jiage | sc_time             | quxiao_sc |
++----+---------+----------+---------------------+-----------+
+| 1  | adidas  |      300 | 2018-11-12 21:54:43 |          |
++----+---------+----------+---------------------+-----------+
+1 row in set (0.00 sec)
+
+mysql>  insert into shoucang(id,sc_name,sc_jiage,sc_time) values('2','nike',320.00,now());
+Query OK, 1 row affected (0.10 sec)
+
+mysql>  insert into shoucang(id,sc_name,sc_jiage,sc_time) values('3','dickies',500.00,now());
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from shoucang;
++----+---------+----------+---------------------+-----------+
+| id | sc_name | sc_jiage | sc_time             | quxiao_sc |
++----+---------+----------+---------------------+-----------+
+| 1  | adidas  |      300 | 2018-11-12 21:54:43 |          |
+| 2  | nike    |      320 | 2018-11-12 21:56:56 |          |
+| 3  | dickies |      500 | 2018-11-12 21:58:34 |          |
++----+---------+----------+---------------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> update shoucang set quxiao_sc=0 where sc_name='nike';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from shoucang;
++----+---------+----------+---------------------+-----------+
+| id | sc_name | sc_jiage | sc_time             | quxiao_sc |
++----+---------+----------+---------------------+-----------+
+| 1  | adidas  |      300 | 2018-11-12 21:54:43 |          |
+| 2  | nike    |      320 | 2018-11-12 21:56:56 |           |
+| 3  | dickies |      500 | 2018-11-12 21:58:34 |          |
++----+---------+----------+---------------------+-----------+
+3 rows in set (0.00 sec)
